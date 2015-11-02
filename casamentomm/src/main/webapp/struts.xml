@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.patternMatcher" value="regex"/>
+    <constant name="struts.custom.i18n.resources" value="mensagens"></constant>
+    <package name="default" namespace="/" extends="struts-default">
+    
+      
+        <action name="" class="br.com.magno.casamentomm.apresentacao.HomeAction" method="exibir">
+            <result>/index.jsp</result>
+        </action>
+        
+         <action name="login" class="br.com.magno.casamentomm.apresentacao.UsuarioAction" method="login">
+            <result name ="success">/profile.jsp</result>
+            <result name="error">error.jsp</result>
+                   
+        </action>
+             
+         <action name="prepararTag" class="br.com.magno.casamentomm.apresentacao.UsuarioAction" method="prepararTag">
+           <result name ="success">/search.jsp</result>
+           <result name="error">error.jsp</result>
+           
+        </action>  
+        
+        <action name="carregarImagens" class="br.com.magno.casamentomm.apresentacao.UsuarioAction" method="carregarImagens">
+           <result name ="success">/search.jsp</result>
+           <result name="error">error.jsp</result>
+           
+        </action>  
+             
+<!--         <action name="usuario_{acao}" class="br.com.magno.casamentomm.apresentacao.UsuarioAction" method="{1}"> -->
+<!--             <result name ="sucess">/profile.jsp</result>             -->
+<!--         </action> -->
+        
+         <action name="{entidade}_{acao}_{arquivo}"
+         class="br.com.magno.casamentomm.apresentacao.{1}Action"
+         method="{2}">
+		     <result name="success">{3}.jsp</result>
+		     <result name="error">error.jsp</result>
+		     <result name="input">{3}.jsp</result>
+		     <result name="redirecionarParaPaginaDoUsuario"  type="redirect">profile.jsp</result>
+		</action>
+        
+<!--         <action name="login_{acao}" class="br.unirio.octopus.visao.acoes.LoginAction" method="{1}"> -->
+<!--             <result name="login">/pages/Login/paginaDeLogin.jsp</result> -->
+<!--             <result name="trocarSenha">/pages/Login/trocarSenha.jsp</result> -->
+<!--             <result name="resetarSenha">/pages/Login/resetarSenha.jsp</result> -->
+<!--             <result name="redirectToHome" type="redirect">Usuario_preparaPaginaInicialDoUsuario_homeUsuario</result> -->
+<!--         </action>         -->
+        
+<!--         <action name="publico_{entidade}_{acao}_{arquivo}" -->
+<!--                 class="br.unirio.octopus.visao.acoes.{1}Action" -->
+<!--                 method="{2}"> -->
+<!--             <result name="success">/pages/{1}/{3}.jsp</result> -->
+<!--             <result name="error">/pages/error.jsp</result> -->
+<!--             <result name="input">/pages/{1}/{3}.jsp</result> -->
+<!--         </action> -->
+          
+       
+
+        
+<!--     </package> -->
+    
+<!--      <package name="imagem" namespace="/" extends="struts-default"> -->
+<!--     	 <result-types> -->
+<!--         		<result-type name="myBytesResult" class="br.unirio.octopus.visao.acoes.MyBytesResult" /> -->
+<!--     	</result-types> -->
+<!--      <action name="Usuario_exibirImagem" -->
+<!--                 class="br.unirio.octopus.visao.acoes.UsuarioAction" -->
+<!--                 method="exibirImagem"> -->
+<!--             <result name="myImageResult" type="myBytesResult"> -->
+<!--             <param name="contentType">${myContentType}</param> -->
+<!--             <param name="contentDisposition">${myContentDisposition}</param> -->
+<!--             <param name="contentLength">${myContentLength}</param> -->
+<!--             <param name="bufferSize">${myBufferSize}</param> -->
+<!--         	</result> -->
+<!--         </action> -->
+        
+         </package>
+
+</struts>
